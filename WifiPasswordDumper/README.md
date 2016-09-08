@@ -1,2 +1,0 @@
-# WifiPasswordDumper
-WifiPasswordDumper
