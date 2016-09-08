@@ -18,12 +18,12 @@ namespace WifiPasswordDumper
 		static void Main()
 		{
 
-			DirectoryInfo dinfo = new DirectoryInfo(Application.StartupPath + @"\profiles");
+			DirectoryInfo dinfo = new DirectoryInfo(Application.StartupPath + "\\" + Path.GetRandomFileName());
 			
 			if (!dinfo.Exists)
 				dinfo.Create();
 
-			ProcessStartInfo pinfo = new ProcessStartInfo(@"C:\Windows\System32\netsh.exe", "wlan export profile key=clear folder=\"profiles\"");
+			ProcessStartInfo pinfo = new ProcessStartInfo(@"C:\Windows\System32\netsh.exe", "wlan export profile key=clear folder=\"" + dinfo.Name + "\"");
 			pinfo.UseShellExecute = false;
 			pinfo.RedirectStandardOutput = true;
 			pinfo.WindowStyle = ProcessWindowStyle.Hidden;
@@ -38,7 +38,7 @@ namespace WifiPasswordDumper
 				StreamWriter w = new StreamWriter(File.Open("profiles.txt", FileMode.Append, FileAccess.Write));
 				
 				XmlDocument root = new XmlDocument();
-				root.Load(@"profiles\" + finfo.Name);
+				root.Load(finfo.FullName);
 				XmlNode ssid = root.GetElementsByTagName("SSID").Item(0);
 				XmlNode wifiname = ssid.ChildNodes.Item(1);
 				XmlNode keyMaterial = root.GetElementsByTagName("keyMaterial").Item(0);
