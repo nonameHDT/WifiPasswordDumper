@@ -11,9 +11,11 @@ namespace WifiPasswordDumper
 {
 	static class Program
 	{
-		/// <summary>
-		/// The main entry point for the application.
-		/// </summary>
+		/*	Author: nonameHDT
+		 *	Email: nonameanbu@gmail.com
+		 *  Facebook: https://www.facebook.com/hung.de.tien.175
+		 *	Release date: 08/09/2016
+		 */
 		[STAThread]
 		static void Main()
 		{
